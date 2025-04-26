@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body class="coloumn" style="
+ justify-content: center; 
+ align-items: center;
+ gap: 25px;
+  width:100vw;height:100vh;"
+  >
+
+  <h1>
+
+  </h1>
+
+  <div class="textBox">
+    <input type="text" pattern="?+91\d+" placeholder=""/>
+    <label for="name" >First Name</label>
+    <i class="fa-regular fa-user"></i>
+  </div>
+
+  <div class="textBox">
+    <input type="text"   placeholder="" />
+    <label for="name" >Last Name</label>
+    <i class="fa-regular fa-user"></i>
+
+
+  <div class="textBox">
+    <input type="email"   placeholder="" />
+    <label for="name" >Email</label>
+    <i class="fa-regular fa-user"></i>
+  </div> 
+  <div class="row" style="justify-content: space-between;width:150px;">
+    <label for="" class="row">  <input type="radio" name="gender" value="male" checked>Male</label>
+    <label for="" class="row">  <input type="radio" name="gender" value="Female">Female </label>
+  </div>
+
+  <div class="textBox">
+    <input type="text" name="" id="" style="height: 125px;" placeholder="Write Your Commant">
+
+    <input type="checkbox">
+    I agree to the terms
+  </label>
+    
+  </div>
+
+  <div>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+      body{
+        font-family: "Jost", sans-serif;
+  font-optical-sizing: auto;
+  font: weight 500px;
+  font-style: normal;
+      }
+
+      .row{
+        display: flex;
+      }
+
+      .coloumn{
+        display:flex ;
+        flex-direction: column;
+      }
+
+      .row{
+        gap: 10px;
+      }
+
+      input[type="text"]{
+        
+      }
+
+      input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      accent-color: rgb(211, 30, 135); /* Sets the color of the radio button when checked */
+      border-radius: 50%;
+    }
+ 
+
+      
+
+      .textBox{
+        position:relative;
+      }
+
+      .textBox input{
+        width: 300px;
+        height: 35px;
+        border: solid pink  2px;
+        border-radius: 5px;
+        padding-left:30px;
+        padding-bottom:10px;
+      }
+
+      .textBox input:focus{
+        border: solid pink  2px;
+        outline: none;
+      }
+
+      .textBox i{
+        position: absolute;
+        top:25%;
+        right:10px;
+      }
+      
+      .textBox input + label{
+          position: absolute;
+          top:15%;
+          left: 30px;
+      }
+
+      .textBox input:focus + label{
+          font-size: smaller;
+          position: absolute;
+          left: 10px;
+          top: -15px;
+          background: white;
+          padding: 5px;
+      }
+
+
+    </style>
+    
+  </div>
+
+</body>
+</html>
