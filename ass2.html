@@ -6,26 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body class="coloumn" style="
+display: flex;
+flex-direction: column;
  justify-content: center; 
  align-items: center;
  gap: 25px;
   width:100vw;height:100vh;"
   >
 
-  <h1>
-
-  </h1>
 
   <div class="textBox">
-    <input type="text" pattern="?+91\d+" placeholder=""/>
+    <input type="text"  placeholder=""/>
     <label for="name" >First Name</label>
     <i class="fa-regular fa-user"></i>
   </div>
+
 
   <div class="textBox">
     <input type="text"   placeholder="" />
     <label for="name" >Last Name</label>
     <i class="fa-regular fa-user"></i>
+  </div>
 
 
   <div class="textBox">
@@ -33,6 +34,7 @@
     <label for="name" >Email</label>
     <i class="fa-regular fa-user"></i>
   </div> 
+
   <div class="row" style="justify-content: space-between;width:150px;">
     <label for="" class="row">  <input type="radio" name="gender" value="male" checked>Male</label>
     <label for="" class="row">  <input type="radio" name="gender" value="Female">Female </label>
@@ -40,7 +42,8 @@
 
   <div class="textBox">
     <input type="text" name="" id="" style="height: 125px;" placeholder="Write Your Commant">
-
+    </div>
+    <label class="row" style="justify-self: flex-end;">
     <input type="checkbox">
     I agree to the terms
   </label>
@@ -71,10 +74,6 @@
         gap: 10px;
       }
 
-      input[type="text"]{
-        
-      }
-
       input[type="radio"] {
       width: 20px;
       height: 20px;
@@ -82,9 +81,6 @@
       border-radius: 50%;
     }
  
-
-      
-
       .textBox{
         position:relative;
       }
@@ -106,8 +102,7 @@
       .textBox i{
         position: absolute;
         top:25%;
-        right:10px;
-      }
+        right:10px;}
       
       .textBox input + label{
           position: absolute;
@@ -121,8 +116,7 @@
           left: 10px;
           top: -15px;
           background: white;
-          padding: 5px;
-      }
+          padding: 5px;}
 
 
     </style>
