@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body display="flex" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background-color: #f0f0f0;">
+    <form style="display: flex;  flex-direction: column;gap:10px; width: 300px; margin: auto; padding: 20px; border: 1px solid #ccc;" id ="form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"  style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname"  style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"  style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+        <label id="option">Option</label>
+        <label><input type="checkbox" name="option" id="" value="option1"> option1</label>
+        <label><input type="checkbox" name="option" id="" value="option2"> option2</label>
+        <label id="gender">Gender:</label> 
+        <label><input type="radio" name="gender" value="Male">Male</label>
+        <label><input type="radio" name="gender" value="FeMale">Female</label>  
+        <label >Comment</label> 
+        <textarea name="comment" id="comment"  style="padding: 5px; border: 1px solid #ccc; border-radius: 4px;height: 75px;"></textarea>
+        <select name="dropdown" id="dropdown">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+        </select>
+
+
+        <!-- 
+        Here any button click automatically page refreshes.
+        So, we need to prevent the default behavior of the button.
+        We can do this by using event.preventDefault() method.or
+        We can use type="button" in the button tag.
+        -->
+        <button id="submitBtn" type="button">Send</button>
+        <button id="cancel" >Cancel</button>
+        <!--button id="Cancel">Cancel</button-->
+      </form>
+      <script>
+
+        let data={
+            name: "",
+            lastname: "",
+            email: "",
+            options: [],
+            gender: "",
+            comment: "", 
+            dropdown: ""
+          }
+          let finalData = {
+            name: "",
+            lastname: "",
+            email: "",
+            options: [],
+            gender: "",
+            comment: "", 
+            dropdown: ""
+          }
+        
+
+          var resetValidate=false;
+
+          var form = document.getElementById('form');
+
+
+
+   document.getElementById('submitBtn').addEventListener('click', function(event) {
+ 
+ // event.preventDefault();
+    var textFields = ['name', 'lastname', 'email'];
+
+    textFields.forEach(t=> {
+        const f = document.getElementById(t);
+        const availableError = f.nextElementSibling;
+        
+        switch (t) {
+            case 'name':
+                data.name = f.value;
+                break;
+            case 'lastname':
+                data.lastname = f.value;
+                break;
+            case 'email':
+                data.email = f.value;
+                break;
+        }
+        
+        if (f.value.trim() === "") {
+            if (!availableError || !availableError.classList.contains('error')) {
+                const span = document.createElement('span');
+                span.classList.add('error');
+                span.textContent = `This ${t} is required`;
+                f.insertAdjacentElement('afterend', span);
+            }
+        } else {
+            if (availableError && availableError.classList.contains('error')) {
+                availableError.remove();
+            }
+        }
+
+
+    });
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+
+        var option=document.getElementById('option');
+      
+
+      if (checkboxes.length === 0)   {
+        if(!option.nextElementSibling || !option.nextElementSibling.classList.contains('error')){
+        const errorSpan = document.createElement('span');
+        errorSpan.classList.add('error');
+        errorSpan.textContent = 'Please select at least one option.';
+        option.insertAdjacentElement('afterend', errorSpan);
+        }
+      }else {
+        data.options = Array.from(checkboxes).map(checkbox => checkbox.value);
+        const errorSpan = option.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains('error')) {
+            errorSpan.remove();
+        }
+      }
+
+   
+      const radios = document.querySelector('input[type="radio"]:checked');
+      var gender=document.getElementById('gender');
+
+      try {
+        data.gender=radios.value;
+        const errorSpan = gender.nextElementSibling;
+        if (errorSpan && errorSpan.classList.contains('error')) {
+            errorSpan.remove();
+        }
+    
+      } catch (error) {
+                  if (!gender.nextElementSibling.classList.contains('error')) {
+        const errorSpan = document.createElement('span');
+        errorSpan.classList.add('error');
+        errorSpan.textContent = 'Please select radio button.';
+        gender.insertAdjacentElement('afterend', errorSpan);
+                  }
+      }
+  
+ 
+      
+
+      const from = document.getElementById('form');
+    
+  
+      const commentField = document.getElementById('comment');   
+      const dropDown = document.getElementById('dropdown'); 
+  
+      
+      data.comment = commentField.value;
+      data.dropdown = dropDown.value;
+
+      console.log(data);
+
+      
+      let table = `
+        <table style="width: 100%;margin-top:10px; border-collapse: collapse;border: 1px solid pink;">
+            <tr>
+                <th style="border: 1px solid #ccc; padding: 8px; background:lightgray;">Field</th>
+                <th style="border: 1px solid #ccc; padding: 8px; background:lightgray;">Value</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Name</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.name}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Last Name</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.lastname}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Email</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.email}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Options</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.options.join(',')}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Gender</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.gender}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Comment</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.comment}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">Dropdown</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">${data.dropdown}</td> 
+            </table>
+       `
+
+      if(data.name!=""&&data.lastname!=""&&data.email!=""&&data.options.length!=0&&data.gender!=""&&data.dropdown!=""){
+          const resultDiv = document.createElement('div');
+          resultDiv.style.width = '40%';
+          resultDiv.innerHTML = table;
+
+        if(!resetValidate) { 
+          form.insertAdjacentElement('afterend',resultDiv);
+        }
+
+          resetValidate=true;
+       }
+        
+     
+
+});
+
+
+      </script>
+      <style>
+        span.error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+      </style>
+
+</body>
+
+</html>

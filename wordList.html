@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Load JSON into Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Pronouns Table</h2>
+
+  <table id="pronounsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Part of Speech</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    const txt=" i have work."
+    fetch('words.json')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#pronounsTable tbody');
+        
+        
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${data[3].name}</td>
+            <td>${data[3].partsOfSpeech}</td>
+          `;
+          tableBody.appendChild(row);
+      })
+      .catch(error => {
+        console.error('Error loading JSON:', error);
+      });
+  </script>
+
+</body>
+</html>
