@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <form style="display: flex;flex-direction: column;width:25%;">
+    <label >Name</label>
+    <input id="name" type="text" name="" >
+    <label >Last Name</label>
+    <input id="lastName" type="text" name="" >
+    <label >Email</label>
+    <input id="email" type="email" name="">
+    <label id="check">Check List</label>
+    <label><input type="checkbox" name="check" value="Option1">Option1</label>
+    <label><input type="checkbox" name="check" value="Option2">Option2</label>
+    <button id="submit" type="button">Submit</button>
+    <button>Cancel</button>
+    </form>
+</body>
+<script>
+
+    var data={name:"",lastName:"",email:"",optons:""}
+    const _submit=document.getElementById("submit");
+
+
+    var _name=document.getElementById("name");//dont use name as name variable
+    var lastName=document.getElementById("lastName");
+    var email=document.getElementById("email");
+   
+           /**
+ * @param {HTMLElement} element - The DOM element to validate.
+ */
+
+
+            _submit.addEventListener("click",()=>{
+
+                 //if use qurry selecter all use only singal corts '' no use " " in a arguments
+                 //dont asigt globally that not updated everytime click
+                let checkList=document.querySelectorAll('input[type="checkbox"]:checked')
+               
+
+            const checkElement=(element,condtion,message,output)=>{
+                  let sibiling=element.nextElementSibling;                      
+            
+            if(condtion){
+                  if(!sibiling.classList.contains('error')){
+            let span=document.createElement("span");
+            span.textContent=message;
+            span.classList.add("error")
+           element.insertAdjacentElement("afterend",span);
+
+            }
+             }
+            
+            else {
+                output()
+               if(sibiling.classList.contains('error')) {
+                    sibiling.remove();
+               }
+            }
+
+            }
+
+            checkElement(_name,_name.value=="","Enter The Name",()=>{
+                data.name=_name.value
+            })
+
+            checkElement(lastName,lastName.value=="","Enter The Last Name",()=>{
+                data.lastName=lastName.value
+            })
+
+            checkElement(email,email.value=="","Enter The Email",()=>{
+                data.email=email.value
+            })
+
+
+            let checkdata=Array.from(checkList)
+            checkElement(document.getElementById("check"),checkList.length==0,"Any one You Check",()=>{
+                data.optons=checkdata.map((value)=>{
+                        return value.value;
+                }).join(',')
+                console.log(data);
+            })
+
+
+
+           
+
+
+            })
+
+
+   
+
+    
+
+</script>
+<style>
+    .error{
+        color: red;
+    }
+</style>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form style="display:flex;flex-direction: column;width:25%;gap:10px;">
+        <label>First Name</label>
+        <input type="text"  id="fistName">
+        <label>Last Name</label>
+        <input type="text"  id="lastName">
+        <label>Email</label>
+        <input type="email" id="email">
+        <label >CheckBox</label>
+        <label ><input type="checkbox" name="check" value="Check1">Check1</label>
+        <label ><input type="checkbox" name="check" value="Check2">Check2</label>
+        <label>Radio</label>
+        <label><input type="radio" name="radio" value="Male">Male</label>
+        <label><input type="radio" name="radio" value="Fe Male">Fe Male</label>
+        <label>Select The Options</label>
+        <select>
+            <option value="Option1">Option1</option>
+            <option value="Option2">Option2</option>
+            <option value="Option3">Option3</option>
+            <option value="Option4">Option4</option>
+        </select>
+        <textarea  id="comment" style="height:100px;">
+        </textarea>
+        <button>Submit</button>
+        <button>Cancel </button>
+
+    </form>
+
+</body>
+</html>

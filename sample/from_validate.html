@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <from id="basicFrom" style="display: flex;flex-direction: column;width:25%;gap:10px;">
+    <label>First Name</label>
+    <input type="text"  id="firstName">
+    <label>Last Name</label>
+    <input type="text"  id="lastName">
+    <label>Email</label>
+    <input type="email"  id="email">
+    <label>Checks</label>
+    <label><input type="checkbox" name="check" value="Check1">Check1</label>
+    <label><input type="checkbox" name="check" value="Check2">Check2</label>
+    <label>Options</label>
+    <label><input type="radio" name="gender" value="Male">Male</label>
+    <label><input type="radio" name="gender" value="Fe Male">Fe Male</label>
+    <select>
+        <option value="option1">Option1</option>
+        <option value="option2">Option2</option>
+        <option value="option3">Option3</option>
+        <option value="option4">Option4</option>
+    </select>
+    <textarea >
+
+    </textarea>
+    <button id="submit">Submit</button>
+    <button id="cancel">Cancel</button>
+    <script>
+
+        var data={name:"",lastName:"",email:"",optons:"",checks:"",dropDown:"",comment:""}
+        var firstName=document.getElementById('firstName')
+        var lastName=document.getElementById('lastName')
+        var email=document.getElementById('email')
+        var basicFrom=document.getElementById('basicFrom')
+
+
+        var cancel=document.getElementById('cancel')
+        var submit=document.getElementById('submit')
+
+
+                   /**
+ * @param {HTMLElement} element - The DOM element to validate.
+ */
+
+        var check=(element,condtion,msg,output)=>{
+            var span=document.createElement('span')
+            span.textContent=msg
+            span.classList.add('error')
+            element.insertAdjacentElement("afterend",span)
+            if(condtion){
+              output()
+            }
+        }
+
+        
+        submit.addEventListener("click",()=>{
+                 check(firstName,true,"Error",()=>{
+
+        })
+        check(lastName,true,"Error",()=>{
+
+        })
+        check(email,true,"Error",()=>{
+          
+        })
+
+        })
+
+        cancel.addEventListener("click",()=>{
+          alert("cll")
+            document.getElementById('basicFrom').reset();
+        })
+
+
+
+   
+  
+    </script>
+
+  </from>
+</body>
+    <style>
+      .error{
+        color: red;
+      }
+    </style>
+</html>
